@@ -32,6 +32,7 @@ RUN mkdir $BUILD_HOME $GOPATH && \
     cd $BUILD_HOME/cyreex && \
     git clone -b master https://github.com/Cyreex/heketi && \
     cp $BUILD_HOME/cyreex/heketi/heketi-start.sh /usr/bin/heketi-start.sh && \
+    chmod +x /usr/bin/heketi-start.sh && \
     cd && rm -rf $BUILD_HOME && \
     dnf -y remove git glide golang mercurial && \
     dnf -y autoremove && \
