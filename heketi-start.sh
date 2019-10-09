@@ -127,6 +127,13 @@ if [[ ! -f "${HEKETI_PATH}/heketi.db" ]]; then
         fi
         ((check+=1))
     done
+else
+    #Added for compatibility with the old approach    
+    out=$(mount | grep "${HEKETI_PATH}" | grep heketidbstorage)
+    if [[ $? -ne 0 ]]; then
+        info "Database volume not found"
+        restore_backup
+    fi
 fi
 
 stat "${HEKETI_PATH}/heketi.db" 2>/dev/null | tee -a "${LOG}"
