@@ -119,13 +119,13 @@ if [[ ! -f "${HEKETI_PATH}/heketi.db" ]]; then
     info "Database file is expected, waiting..."
     check=0
     while [[ ! -f "${HEKETI_PATH}/heketi.db" ]]; do
-      sleep 5
-      if [[ ${check} -eq 5 ]]; then
-        #Try to restore BD from secret
-        restore_backup
-        break
-      fi
-      ((check+=1))
+        sleep 5
+        if [[ ${check} -eq 5 ]]; then
+            #Try to restore BD from secret
+            restore_backup
+            break
+        fi
+        ((check+=1))
     done
 fi
 
