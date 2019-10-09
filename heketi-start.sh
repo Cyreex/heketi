@@ -116,21 +116,17 @@ fi
 
 if [[ ! -f "${HEKETI_PATH}/heketi.db" ]]; then
     info "No database file found"
-    out=$(mount | grep "${HEKETI_PATH}" | grep heketidbstorage)
-    if [[ $? -eq 0 ]]; then
-        info "Database volume found: ${out}"
-        info "Database file is expected, waiting..."
-        check=0
-        while [[ ! -f "${HEKETI_PATH}/heketi.db" ]]; do
-            sleep 5
-            if [[ ${check} -eq 5 ]]; then
-               #Try to restore BD from secret
-               restore_backup
-               #fail "Database file did not appear, exiting."
-            fi
-            ((check+=1))
-        done
-    fi
+    info "Database file is expected, waiting..."
+    check=0
+    while [[ ! -f "${HEKETI_PATH}/heketi.db" ]]; do
+      sleep 5
+      if [[ ${check} -eq 5 ]]; then
+        #Try to restore BD from secret
+        restore_backup
+        break
+      fi
+      ((check+=1))
+    done
 fi
 
 stat "${HEKETI_PATH}/heketi.db" 2>/dev/null | tee -a "${LOG}"
