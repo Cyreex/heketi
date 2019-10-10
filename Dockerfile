@@ -1,5 +1,5 @@
 # set author and base
-FROM fedora:27
+FROM fedora
 MAINTAINER Heketi Developers <heketi-devel@gluster.org>
 
 LABEL version="1.3.1"
