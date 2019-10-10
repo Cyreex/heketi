@@ -1,5 +1,5 @@
 # set author and base
-FROM fedora
+FROM fedora:27
 MAINTAINER Heketi Developers <heketi-devel@gluster.org>
 
 LABEL version="1.3.1"
@@ -10,8 +10,8 @@ ENV BUILD_HOME=/build
 ENV GOPATH=$BUILD_HOME/golang
 ENV PATH=$GOPATH/bin:$PATH
 # where to clone from
-ENV HEKETI_REPO="https://github.com/heketi/heketi.git"
-ENV HEKETI_BRANCH="master"
+ENV HEKETI_REPO="https://github.com/grig-tar/heketi.git"
+ENV HEKETI_BRANCH="v9-with-fix1574"
 
 # install dependencies, build and cleanup
 RUN mkdir $BUILD_HOME $GOPATH && \
